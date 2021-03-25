@@ -79,7 +79,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            پروژه دکتر آزادی مطلق
+            {{setting('name')}}
         </div>
 
         <div class="links">
