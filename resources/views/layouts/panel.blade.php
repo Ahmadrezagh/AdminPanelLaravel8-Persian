@@ -365,7 +365,12 @@
 <!-- Tags input -->
 <script src="{{URL::to('/')}}/tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 <script src="{{URL::to('/')}}/tagsinput/dist/bootstrap-tagsinput/bootstrap-tagsinput-angular.min.js"></script>
-
+<!-- CK Editor for all textarea -->
+<script>
+    $("textarea").each(function(){
+        CKEDITOR.replace( this );
+    });
+</script>
 <!-- Page script -->
 @yield('js')
 

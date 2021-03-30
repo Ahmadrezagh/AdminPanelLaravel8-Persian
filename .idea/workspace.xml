@@ -19,13 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9c7d34b-bc8f-4609-a5aa-ff1288bf0535" name="Default Changelist" comment="" />
+    <list default="true" id="a9c7d34b-bc8f-4609-a5aa-ff1288bf0535" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -176,7 +178,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616708459369</updated>
-      <workItem from="1616708460425" duration="3981000" />
+      <workItem from="1616708460425" duration="4702000" />
+      <workItem from="1616739504702" duration="7000" />
     </task>
     <servers />
   </component>
@@ -193,5 +196,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
