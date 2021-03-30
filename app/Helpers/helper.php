@@ -17,7 +17,7 @@ function upload_file($file,$file_path = null,$name = null )
         $file_name = $name.".".$file->getClientOriginalExtension();
     }else
     {
-        $file_name = $file->getClientOriginalName;
+        $file_name = $file->getClientOriginalName();
     }
     // Upload Image
     $file->move(public_path($path), $file_name);
