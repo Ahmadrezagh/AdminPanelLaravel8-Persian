@@ -60,12 +60,12 @@ class UserController extends Controller
             're_password' => ['required', 'string', 'min:8'],
         ]);
         if($validatedData->fails()){
-            alert()->warning("something wen't wrong...");
+            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
             return back()->withErrors($validatedData)->withInput();
         }
         if($request->password != $request->re_password)
         {
-            alert()->warning('Password and Retype password not matched');
+            alert()->warning('رمز عبور و تکرار آن با یکدیگر مطابقت ندارند');
             return back()->withErrors($validatedData)->withInput();
         }
         $user = User::create([
@@ -75,7 +75,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        alert()->success('User created successfully');
+        alert()->success('کاربر با موفقیت ایجاد شد');
         return back();
     }
 
@@ -118,7 +118,7 @@ class UserController extends Controller
             'img' => 'image|mimes:jpeg,jpg,png',
         ]);
         if($validatedData->fails()){
-            alert()->warning("something wen't wrong...");
+            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
             return back()->withErrors($validatedData)->withInput();
         }
         if($request->img)
@@ -130,7 +130,7 @@ class UserController extends Controller
         {
             if($request->password != $request->re_password)
             {
-                alert()->warning('Password and Retype password not matched');
+                alert()->warning('رمز عبور و تکرار آن با یکدیگر مطابقت ندارند');
                 return back()->withErrors($validatedData)->withInput();
             }
         }
@@ -141,7 +141,7 @@ class UserController extends Controller
             'profile' => ($request->img) ? $profile_img : User::where('id','=',$id)->pluck('profile')->first()
         ]);
         $user = User::where('id','=',$id)->first();
-        alert()->success('User edited successfully');
+        alert()->success('کاربر با موفقیت ویرایش شد');
         return back();
     }
 
@@ -154,7 +154,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::where('id',$id)->delete();
-        alert()->success('User deleted successfully');
+        alert()->success('کاربر با موفقیت حذف شد');
         return back();
     }
 }

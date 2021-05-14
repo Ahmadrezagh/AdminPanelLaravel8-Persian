@@ -15,7 +15,6 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-
         $this->middleware(function ($request, $next) {
             if ((Auth::user()->isAdmin() && Auth::user()->can('Admin')) || Auth::user()->isSuperAdmin())
             {
@@ -24,7 +23,6 @@ class AdminController extends Controller
                 abort(404);
             }
         });
-
     }
     /**
      * Display a listing of the resource.
@@ -64,12 +62,12 @@ class AdminController extends Controller
             're_password' => ['required', 'string', 'min:8'],
         ]);
         if($validatedData->fails()){
-            alert()->warning("something wen't wrong...");
+            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
             return back()->withErrors($validatedData)->withInput();
         }
         if($request->password != $request->re_password)
         {
-            alert()->warning('Password and Retype password not matched');
+            alert()->warning('رمز عبور و تکرار آن یکسان نیست');
             return back()->withErrors($validatedData)->withInput();
         }
          $user = User::create([
@@ -83,7 +81,7 @@ class AdminController extends Controller
         {
            $user->refreshRoles($request->role);
         }
-        alert()->success('Admin created successfully');
+        alert()->success('مدیر با موفقیت ایجاد شد');
         return back();
     }
 
@@ -126,7 +124,7 @@ class AdminController extends Controller
             'img' => 'image|mimes:jpeg,jpg,png',
         ]);
         if($validatedData->fails()){
-            alert()->warning("something wen't wrong...");
+            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
             return back()->withErrors($validatedData)->withInput();
         }
         if($request->img)
@@ -138,7 +136,7 @@ class AdminController extends Controller
         {
             if($request->password != $request->re_password)
         {
-            alert()->warning('Password and Retype password not matched');
+            alert()->warning('رمز عبور و تکرار آن یکسان نیست');
             return back()->withErrors($validatedData)->withInput();
         }
         }
@@ -153,7 +151,7 @@ class AdminController extends Controller
         {
            $user->refreshRoles($request->role);
         }
-        alert()->success('Admin edited successfully');
+        alert()->success('مدیر با موفقیت ویرایش شد');
         return back();
     }
 
@@ -166,7 +164,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         User::where('id',$id)->delete();
-        alert()->success('Admin deleted successfully');
+        alert()->success('مدیر با موفقیت حذف شد');
         return back();
     }
 }

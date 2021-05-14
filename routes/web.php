@@ -31,3 +31,6 @@ Route::middleware(['auth'])->group(function () {
     // Default
     Route::get('/home', 'HomeController@index')->name('home');
 });
+
+
+

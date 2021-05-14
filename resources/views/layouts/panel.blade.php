@@ -179,7 +179,7 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                                        <li>
+                                        <li class="nav-item">
                                             <a href="{{route('home')}}" class="nav-link @yield('home')">
 
                                                 <i class="fas fa-home"></i>
@@ -268,7 +268,7 @@
                                                 </ul>
                                             </li>
                                         @endif
-                                        <li class="nav-item">
+                                        <li >
                                             <a class="nav-link btn btn-danger" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                document.getElementById('logout-form').submit();">

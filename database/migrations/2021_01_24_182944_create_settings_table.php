@@ -18,7 +18,7 @@ class CreateSettingsTable extends Migration
             $table->string('name')->unique();
             $table->string('type');
             $table->string('description');
-            $table->string('value');
+            $table->longText('value');
             $table->bigInteger('setting_group_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
