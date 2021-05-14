@@ -34,9 +34,13 @@
             src: url(/fonts/ttf/iranyekanwebboldfanum.ttf);
         }
     </style>
-    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <!-- CkEditor -->
+    <script src="https://cdn.ckeditor.com/4.15.0/full/ckeditor.js"></script>
+    <!-- Include this in your blade layout -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body style="font-family: IranYekan" class="hold-transition sidebar-mini layout-fixed">
+@include('sweet::alert')
 <div class="wrapper">
 
     <!-- Navbar -->
