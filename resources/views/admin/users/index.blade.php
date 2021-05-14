@@ -115,7 +115,7 @@
                                     <td>{{$user->email}}</td>
                                     <td >
                                         <button class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="{{$user->created_at}}">
-                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %y')}}
+                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %Y')}}
                                         </button>
                                     </td>
                                     <td class="text-center">
