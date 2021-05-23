@@ -55,9 +55,9 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
             'name' => 'required',
         ]);
+        dd(Permission::whereIn('name', $request->permissions )->pluck('id'));
         $role = new Role();
         try {
             $role->name = $request->name;
