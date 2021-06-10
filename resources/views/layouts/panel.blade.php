@@ -215,9 +215,9 @@
                                             </ul>
                                         </li>
                                         @endif
-                                        @if ((Auth::user()->isAdmin() && Auth::user()->can('Documents')) || Auth::user()->isSuperAdmin() )
+                                        @if ((Auth::user()->isAdmin() && Auth::user()->can('Categories')) || Auth::user()->isSuperAdmin() )
                                             <li class="nav-item has-treeview ">
-                                                <a href="#" class="nav-link @yield('Documents')">
+                                                <a href="#" class="nav-link @yield('Categories')">
                                                     <i class="fas fa-clipboard-list"></i>
                                                     <p>
                                                         دسته بندی ها
@@ -226,7 +226,7 @@
                                                 </a>
                                                 <ul class="nav nav-treeview">
                                                         <li class="nav-item">
-                                                            <a href="{{route('categories.index')}}" class="nav-link @yield('Document')">
+                                                            <a href="{{route('categories.index')}}" class="nav-link @yield('Category')">
                                                                 <p>دسته بندی</p>
                                                             </a>
                                                         </li>
