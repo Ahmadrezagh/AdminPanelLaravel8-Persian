@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('title')
-Login
+ورود
 @endsection
 @section('content')
 
