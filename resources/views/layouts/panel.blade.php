@@ -315,7 +315,9 @@
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
-
+@jquery
+@toastr_js
+@toastr_render
 <!-- jQuery -->
 <script src="{{URL::to('/').'/plugins/jquery/jquery.min.js'}}"></script>
 
@@ -360,17 +362,9 @@
     $('[data-toggle="tooltip"]').tooltip()
   })
 
-    $(document).ready(function() {
-        $('.js-example-basic-single').select2();
-    });
   </script>
 
 <script src="{{URL::to('/')}}/dist/js/demo.js"></script>
-<!-- image uploader -->
-<script type="text/javascript" src="{{URL::to('/')}}/image_uploader/image_uploader.min.js"></script>
-<!-- Tags input -->
-<script src="{{URL::to('/')}}/tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-<script src="{{URL::to('/')}}/tagsinput/dist/bootstrap-tagsinput/bootstrap-tagsinput-angular.min.js"></script>
 <!-- CK Editor for all textarea -->
 <script>
     $("textarea").each(function(){
@@ -378,12 +372,16 @@
     });
 </script>
 <!-- Page script -->
-@jquery
-@toastr_js
-@toastr_render
+
 @foreach ($errors->all() as $error)
     <script>
         toastr.error('{{$error}}')
+    </script>
+    <script>
+
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
     </script>
 @endforeach
 @yield('js')
