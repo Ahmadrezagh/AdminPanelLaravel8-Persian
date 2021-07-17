@@ -38,6 +38,8 @@
     <script src="https://cdn.ckeditor.com/4.15.0/full/ckeditor.js"></script>
     <!-- Include this in your blade layout -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- Toastr css -->
+    @toastr_css
 </head>
 <body style="font-family: IranYekan" class="hold-transition sidebar-mini layout-fixed">
 @include('sweet::alert')
@@ -376,6 +378,14 @@
     });
 </script>
 <!-- Page script -->
+@jquery
+@toastr_js
+@toastr_render
+@foreach ($errors->all() as $error)
+    <script>
+        toastr.error('{{$error}}')
+    </script>
+@endforeach
 @yield('js')
 
 </body>

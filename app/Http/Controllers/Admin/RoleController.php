@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Role\StoreRoleRequest;
+use App\Http\Requests\Admin\Role\UpdateRoleRequest;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Http\Request;
@@ -49,24 +51,13 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreRoleRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-        dd(Permission::whereIn('name', $request->permissions )->pluck('id'));
-        $role = new Role();
-        try {
-            $role->name = $request->name;
-            $role->save();
-            $role->refreshPermissions($request->permissions);
-        } catch (\Exception $exception) {
-            alert()->warning('warning', $exception->getCode());
-            return redirect()->back();
-        }
+        $role = Role::create($request->validated());
+        $role->refreshPermissions($request->permissions);
         alert()->success('نقش با موفقیت ایجاد شد');
         return back();
     }
@@ -96,17 +87,12 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UpdateRoleRequest $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-        $role = Role::findOrFail($id);
-        $validationData = $request->validate([
-
-            'name' => 'required',
-        ]);
         $role->update($request->only('name'));
         $role->refreshPermissions($request->permissions);
         alert()->success('نقش با موفقیت ویرایش شد');
@@ -119,9 +105,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        Role::findOrFail($id)->delete();
+        $role->delete();
         alert()->success('نقش با موفقیت حذف شد');
         return back();
     }

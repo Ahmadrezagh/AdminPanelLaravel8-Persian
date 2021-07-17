@@ -8,7 +8,7 @@ function setting($name)
     return \App\Models\Setting::getValue($name);
 }
 
-function upload_file($file,$file_path = null,$name = null )
+function upload_file($file,$file_path = null,$name = null ): string
 {
     $path = '/uploads'.$file_path;
     // User image name is = user's phone.img
@@ -36,25 +36,6 @@ function upload_files($files = null , $file_path = null , $random_name = false )
         }
         return $file_paths;
     }
-}
-
-function make_slug($string) {
-    return preg_replace('/\s+/u','-',trim($string));
-}
-
-function DB_create($table,$data = [])
-{
-    DB::table($table)->insert($data);
-}
-
-function DB_update($table,$id,$data = [])
-{
-    DB::table($table)->where('id','=',$id)->update($data);
-}
-
-function DB_delete($table,$id,$column = null)
-{
-    DB::table($table)->where($column ? $column : 'id','=',$id)->delete();
 }
 
 if (!function_exists('try_catch_null')) {

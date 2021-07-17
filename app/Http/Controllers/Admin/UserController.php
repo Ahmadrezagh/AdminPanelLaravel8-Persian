@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\User\StoreUserRequest;
+use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,30 +53,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8' ],
-            're_password' => ['required', 'string', 'min:8'],
-        ]);
-        if($validatedData->fails()){
-            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
-            return back()->withErrors($validatedData)->withInput();
-        }
-        if($request->password != $request->re_password)
-        {
-            alert()->warning('رمز عبور و تکرار آن با یکدیگر مطابقت ندارند');
-            return back()->withErrors($validatedData)->withInput();
-        }
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'type_id' => '3',
-            'password' => Hash::make($request->password),
-        ]);
-
+        $user = User::create($request->validated());
         alert()->success('کاربر با موفقیت ایجاد شد');
         return back();
     }
@@ -108,39 +89,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['nullable', 'string', 'min:8' ],
-            're_password' => ['nullable', 'string', 'min:8'],
-            'img' => 'image|mimes:jpeg,jpg,png',
-        ]);
-        if($validatedData->fails()){
-            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
-            return back()->withErrors($validatedData)->withInput();
-        }
-        if($request->img)
+        $user->update($request->validated());
+        if ($request->hasFile('image'))
         {
-            $profile_img = upload_file($request->img , '/profiles/'.$id,$request->name);
-
+            $image = $user->image;
+            $image = upload_file($request->file('image'),'/profiles',$user->id);
+            $user->update([
+                'profile' => $image
+            ]);
         }
-        if($request->password != null && $request->re_password != null)
-        {
-            if($request->password != $request->re_password)
-            {
-                alert()->warning('رمز عبور و تکرار آن با یکدیگر مطابقت ندارند');
-                return back()->withErrors($validatedData)->withInput();
-            }
-        }
-        User::where('id','=',$id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => ($request->password != null)? Hash::make($request->password) : User::where('id','=',$id)->pluck('password')->first(),
-            'profile' => ($request->img) ? $profile_img : User::where('id','=',$id)->pluck('profile')->first()
-        ]);
-        $user = User::where('id','=',$id)->first();
         alert()->success('کاربر با موفقیت ویرایش شد');
         return back();
     }
@@ -151,9 +110,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        User::where('id',$id)->delete();
+        $user->delete();
         alert()->success('کاربر با موفقیت حذف شد');
         return back();
     }

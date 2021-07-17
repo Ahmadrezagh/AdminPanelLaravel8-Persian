@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Admin\StoreAdminRequest;
+use App\Http\Requests\Admin\Admin\UpdateAdminRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,6 +26,7 @@ class AdminController extends Controller
             }
         });
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -50,39 +53,16 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param StoreAdminRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreAdminRequest $request)
     {
-        $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8' ],
-            're_password' => ['required', 'string', 'min:8'],
-        ]);
-        if($validatedData->fails()){
-            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
-            return back()->withErrors($validatedData)->withInput();
-        }
-        if($request->password != $request->re_password)
-        {
-            alert()->warning('رمز عبور و تکرار آن یکسان نیست');
-            return back()->withErrors($validatedData)->withInput();
-        }
-         $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'type_id' => '2',
-        'password' => Hash::make($request->password),
-        ]);
-
+        $user = User::create($request->validated());
         if($request->role)
-        {
-           $user->refreshRoles($request->role);
-        }
+            $user->refreshRoles($request->role);
         alert()->success('مدیر با موفقیت ایجاد شد');
-        return back();
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -93,7 +73,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        return 'show';
+        //
     }
 
     /**
@@ -110,47 +90,23 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateAdminRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAdminRequest $request, User $admin)
     {
-        $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['nullable', 'string', 'min:8' ],
-            're_password' => ['nullable', 'string', 'min:8'],
-            'img' => 'image|mimes:jpeg,jpg,png',
-        ]);
-        if($validatedData->fails()){
-            alert()->warning("در وارد کردن اطلاعات دقت نمایید");
-            return back()->withErrors($validatedData)->withInput();
-        }
-        if($request->img)
+        $admin->update($request->validated());
+        if ($request->hasFile('image'))
         {
-            $profile_img = upload_file($request->img , '/profiles/'.$id,$request->name);
-
+            $image = $admin->image;
+            $image = upload_file($request->file('image'),'/profiles',$admin->id);
+            $admin->update([
+                'profile' => $image
+            ]);
         }
-        if($request->password != null && $request->re_password != null)
-        {
-            if($request->password != $request->re_password)
-        {
-            alert()->warning('رمز عبور و تکرار آن یکسان نیست');
-            return back()->withErrors($validatedData)->withInput();
-        }
-        }
-         User::where('id','=',$id)->update([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => ($request->password != null)? Hash::make($request->password) : User::where('id','=',$id)->pluck('password')->first(),
-        'profile' => ($request->img) ? $profile_img : User::where('id','=',$id)->pluck('profile')->first()
-        ]);
-        $user = User::where('id','=',$id)->first();
         if($request->role)
-        {
-           $user->refreshRoles($request->role);
-        }
+            $admin->refreshRoles($request->role);
         alert()->success('مدیر با موفقیت ویرایش شد');
         return back();
     }
@@ -161,9 +117,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $admin)
     {
-        User::where('id',$id)->delete();
+        $admin->delete();
         alert()->success('مدیر با موفقیت حذف شد');
         return back();
     }

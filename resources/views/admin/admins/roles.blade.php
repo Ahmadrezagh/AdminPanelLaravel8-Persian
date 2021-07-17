@@ -81,7 +81,7 @@
                         </div>
                         <!-- /.modal -->
 
-                        <table id="table" class="table table-bordered table-striped text-center">
+                        <table id="table" class="table table-bordered table-striped text-center mt-3">
                             <thead>
                             <tr>
                                 <th>نام نقش</th>

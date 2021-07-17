@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">تکرار رمز عبور</label>
-                                <input type="password" name="re_password" class="form-control @error('re_password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="تکرار رمز عبور" required>
+                                <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror"  id="exampleInputPassword1" placeholder="تکرار رمز عبور" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">انتخاب نقش</label>

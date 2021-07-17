@@ -25,6 +25,8 @@
             src: url(/fonts/ttf/iranyekanwebboldfanum.ttf);
         }
     </style>
+  <!-- Toastr css -->
+  @toastr_css
 </head>
 <body style="font-family: IranYekan" class="hold-transition login-page">
 @yield('content')
@@ -35,6 +37,13 @@
 <script src="{{URL::to('/')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{URL::to('/')}}/dist/js/adminlte.min.js"></script>
-
+@jquery
+@toastr_js
+@toastr_render
+@foreach ($errors->all() as $error)
+  <script>
+    toastr.error('{{$error}}')
+  </script>
+@endforeach
 </body>
 </html>

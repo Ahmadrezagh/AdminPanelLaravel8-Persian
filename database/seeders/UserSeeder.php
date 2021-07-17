@@ -20,19 +20,19 @@ class UserSeeder extends Seeder
               'name' => 'مدیر ارشد',
               'type_id' => '1',
               'email'=>'superadmin@site.com',
-              'password'=>'$2y$10$2phjXNKL.ZNYP.3ANw4Z3uej1NfrO5VpkdjWCHuz5cIbJU.CKy/Ky'
+              'password'=>'1234567890'
             ],
             [
                 'name' => 'مدیر',
                 'type_id' => '2',
                 'email'=>'admin@site.com',
-                'password'=>'$2y$10$2phjXNKL.ZNYP.3ANw4Z3uej1NfrO5VpkdjWCHuz5cIbJU.CKy/Ky'
+                'password'=>'1234567890'
             ],
             [
                 'name' => 'کاربر',
                 'type_id' => '3',
                 'email'=>'user@site.com',
-                'password'=>'$2y$10$2phjXNKL.ZNYP.3ANw4Z3uej1NfrO5VpkdjWCHuz5cIbJU.CKy/Ky'
+                'password'=>'1234567890'
             ],
         ];
         foreach ($users as $user)

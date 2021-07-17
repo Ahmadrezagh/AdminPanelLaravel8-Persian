@@ -14,6 +14,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable,HasRoles, HasPermissions;
     use SoftDeletes;
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = !is_null($value) ? bcrypt($value) : $this->password;
+    }
     /**
      * The attributes that are mass assignable.
      *
