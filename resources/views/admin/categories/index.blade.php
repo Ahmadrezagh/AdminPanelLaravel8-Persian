@@ -56,16 +56,14 @@
                                                     <label for="exampleInputEmail1">نام</label>
                                                     <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="نام دسته بندی" required>
                                                 </div>
-                                                <div class="row col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect1">دسته بندی والد</label>
-                                                        <select class="form-control" name="parent_id" id="exampleFormControlSelect1">
-                                                            <option value="0" selected>انتخاب دسته بندی</option>
-                                                            @foreach($categories as $category)
-                                                                <option value="{{$category->id}}">{{$category->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlSelect1">دسته بندی والد</label>
+                                                    <select class="form-control" name="parent_id" id="exampleFormControlSelect1">
+                                                        <option value="0" selected>انتخاب دسته بندی</option>
+                                                        @foreach($categories as $category)
+                                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                             <!-- /.card-body -->
