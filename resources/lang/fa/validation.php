@@ -244,7 +244,10 @@ return [
         'comment' => 'نظرات',
         'rate' => 'امتیاز',
         'job_name' => 'نام شغل',
-
+        'phone' => 'شماره تماس',
+        'postal_code' => 'کد پستی',
+        'city_id' => 'شهر',
+        'province_id' => 'استان'
     ],
 
 ];

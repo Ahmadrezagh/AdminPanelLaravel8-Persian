@@ -57,7 +57,7 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
             'parent_id' => ($request->parent_id > 0) ? $request->parent_id : null,
-            'slug' => make_slug($request->name)
+//            'slug' => make_slug($request->name)
         ]);
         alert()->success('دسته بندی با موفقیت ایجاد شد');
         return back();
@@ -100,7 +100,7 @@ class CategoryController extends Controller
         Category::where('id','=',$id)->update([
             'name' => $request->name,
             'parent_id' => ($request->parent_id > 0) ? $request->parent_id : null,
-            'slug' => make_slug($request->name)
+//            'slug' => make_slug($request->name)
         ]);
         alert()->success('دسته بندی با موفقیت ویرایش شد');
         return back();
