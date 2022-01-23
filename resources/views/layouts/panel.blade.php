@@ -77,10 +77,10 @@
     <div class="main-sidebar main-sidebar-sticky side-menu">
         <div class="sidemenu-logo">
             <a class="main-logo" href="#">
-                <img src="{{url('dashboard/assets/img/brand/logo-light.png')}}" class="header-brand-img desktop-logo" alt="لوگو">
-                <img src="{{url('dashboard/assets/img/brand/icon-light.png')}}" class="header-brand-img icon-logo" alt="لوگو">
-                <img src="{{url('dashboard/assets/img/brand/logo.png')}}" class="header-brand-img desktop-logo theme-logo" alt="لوگو">
-                <img src="{{url('dashboard/assets/img/brand/icon.png')}}" class="header-brand-img icon-logo theme-logo" alt="لوگو">
+                <img src="{{url('logo/long.png')}}" class="header-brand-img desktop-logo" alt="UltimateSoft" style="width: 134px;height: 37px">
+                <img src="{{url('logo/ico.png')}}" class="header-brand-img icon-logo" alt="UltimateSoft" style="width: 45px;height: 45px">
+                <img src="{{url('logo/ico.png')}}" class="header-brand-img desktop-logo theme-logo" alt="لوگو">
+                <img src="{{url('logo/ico.png')}}" class="header-brand-iultimate type png blue.pngmg icon-logo theme-logo" alt="لوگو">
             </a>
         </div>
         <div class="main-sidebar-body">
@@ -94,72 +94,72 @@
                         <span class="sidemenu-label">خانه</span></a>
                 </li>
                 @if ((Auth::user()->isAdmin() && Auth::user()->can('Admin')) || Auth::user()->isSuperAdmin() )
-                <li class="nav-item">
-                    <a class="nav-link with-sub" href="#">
-                        <span class="shape1"></span>
-                        <span class="shape2"></span>
-                        <i class="fas fa-user-shield sidemenu-icon"></i>
-                        <span class="sidemenu-label">مدیریت</span><i class="angle fe fe-chevron-left"></i></a>
-                    <ul class="nav-sub">
-                        <li class="nav-sub-item">
-                            <a class="nav-sub-link" href="{{route('admins.index')}}">مدیر ها</a>
-                        </li>
-                        <li class="nav-sub-item">
-                            <a class="nav-sub-link" href="{{route('roles.index')}}">نقش ها</a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link with-sub" href="#">
+                            <span class="shape1"></span>
+                            <span class="shape2"></span>
+                            <i class="fas fa-user-shield sidemenu-icon"></i>
+                            <span class="sidemenu-label">مدیریت</span><i class="angle fe fe-chevron-left"></i></a>
+                        <ul class="nav-sub">
+                            <li class="nav-sub-item">
+                                <a class="nav-sub-link" href="{{route('admins.index')}}">مدیر ها</a>
+                            </li>
+                            <li class="nav-sub-item">
+                                <a class="nav-sub-link" href="{{route('roles.index')}}">نقش ها</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
                 @if ((Auth::user()->isAdmin() && Auth::user()->can('Categories')) || Auth::user()->isSuperAdmin() )
-                <li class="nav-item">
-                    <a class="nav-link with-sub" href="#">
-                        <span class="shape1"></span>
-                        <span class="shape2"></span>
-                        <i class="fas fa-clipboard-list sidemenu-icon"></i>
-                        <span class="sidemenu-label">دسته بندی ها</span><i class="angle fe fe-chevron-left"></i></a>
-                    <ul class="nav-sub">
-                        <li class="nav-sub-item">
-                            <a class="nav-sub-link" href="{{route('categories.index')}}">دسته بندی</a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link with-sub" href="#">
+                            <span class="shape1"></span>
+                            <span class="shape2"></span>
+                            <i class="fas fa-clipboard-list sidemenu-icon"></i>
+                            <span class="sidemenu-label">دسته بندی ها</span><i class="angle fe fe-chevron-left"></i></a>
+                        <ul class="nav-sub">
+                            <li class="nav-sub-item">
+                                <a class="nav-sub-link" href="{{route('categories.index')}}">دسته بندی</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
                 @if ((Auth::user()->isAdmin() && Auth::user()->can('User')) || Auth::user()->isSuperAdmin() )
-                <li class="nav-item">
-                    <a class="nav-link with-sub" href="#">
-                        <span class="shape1"></span>
-                        <span class="shape2"></span>
-                        <i class="fas fa-users sidemenu-icon"></i>
-                        <span class="sidemenu-label">مدیریت کاربران</span><i class="angle fe fe-chevron-left"></i></a>
-                    <ul class="nav-sub">
-                        <li class="nav-sub-item">
-                            <a class="nav-sub-link" href="{{route('users.index')}}">کاربران</a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link with-sub" href="#">
+                            <span class="shape1"></span>
+                            <span class="shape2"></span>
+                            <i class="fas fa-users sidemenu-icon"></i>
+                            <span class="sidemenu-label">مدیریت کاربران</span><i class="angle fe fe-chevron-left"></i></a>
+                        <ul class="nav-sub">
+                            <li class="nav-sub-item">
+                                <a class="nav-sub-link" href="{{route('users.index')}}">کاربران</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
                 @if ((Auth::user()->isAdmin() && Auth::user()->can('Setting')) || Auth::user()->isSuperAdmin() )
-                <li class="nav-item">
-                    <a class="nav-link with-sub" href="#">
-                        <span class="shape1"></span>
-                        <span class="shape2"></span>
-                        <i class="fas fa-cogs sidemenu-icon"></i>
-                        <span class="sidemenu-label">تنظیمات</span><i class="angle fe fe-chevron-left"></i></a>
-                    <ul class="nav-sub">
-                        @foreach($setting_groups as $group)
-                        <li class="nav-sub-item">
-                            <a class="nav-sub-link" href="{{route('settings.show',$group->name)}}">{{$group->name}}</a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link with-sub" href="#">
+                            <span class="shape1"></span>
+                            <span class="shape2"></span>
+                            <i class="fas fa-cogs sidemenu-icon"></i>
+                            <span class="sidemenu-label">تنظیمات</span><i class="angle fe fe-chevron-left"></i></a>
+                        <ul class="nav-sub">
+                            @foreach($setting_groups as $group)
+                                <li class="nav-sub-item">
+                                    <a class="nav-sub-link" href="{{route('settings.show',$group->name)}}">{{$group->name}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
                 @endif
                 <li class="nav-item mt-3">
                     <a class="nav-link" href="#">
                         <span class="shape1"></span>
                         <span class="shape2"></span>
                         <button class=" btn btn-danger logout mt-3"
-                           style="width: 100%">
+                                style="width: 100%">
                             خروج
                         </button>
 
@@ -179,8 +179,8 @@
             </div>
             <div class="main-header-center">
                 <div class="responsive-logo">
-                    <a href="index.html"><img src="dashboard/assets/img/brand/logo.png" class="mobile-logo" alt="لوگو"></a>
-                    <a href="index.html"><img src="dashboard/assets/img/brand/logo-light.png" class="mobile-logo-dark" alt="لوگو"></a>
+                    <a href="{{route('home')}}"><img src="{{url('logo/long.png')}}" class="mobile-logo" alt="لوگو" style="width: 134px; height: 37px"></a>
+                    <a href="{{route('home')}}"><img src="dashboard/assets/img/brand/logo-light.png" class="mobile-logo-dark" alt="لوگو"></a>
                 </div>
                 <div class="input-group">
                     <div class="input-group-btn search-panel">
