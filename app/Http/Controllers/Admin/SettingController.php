@@ -64,8 +64,8 @@ class SettingController extends Controller
      */
     public function show($id)
     {
-         $group = SettingGroup::findOrFail($id);
-         return view('admin.settings.index',compact('group'));
+        $group = SettingGroup::findByNameOrFail($id);
+        return view('admin.settings.index',compact('group'));
 
     }
 
