@@ -15,4 +15,8 @@ class SettingGroup extends Model
     {
         return $this->hasMany(Setting::class);
     }
+
+    public static function findByNameOrFail(string $name){
+        return self::where('name','=',$name)->firstOrFail();
+    }
 }
