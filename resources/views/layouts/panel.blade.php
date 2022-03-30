@@ -555,21 +555,23 @@
 </script>
 <!-- CK Editor for all textarea -->
 <script>
-    $("textarea").each(function(){
-        CKEDITOR.replace( this );
+    $("textarea").not(".no_ck_editor").each(function() {
+        CKEDITOR.replace(this);
     });
 </script>
 <!-- Page script -->
+<script>
 
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+    $(document).ready(function() {
+        $('.s2').select2();
+    });
+</script>
 @foreach ($errors->all() as $error)
     <script>
         toastr.error('{{$error}}')
-    </script>
-    <script>
-
-        $(document).ready(function() {
-            $('.js-example-basic-single').select2();
-        });
     </script>
 @endforeach
 @yield('js')
